@@ -1,0 +1,16 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+ name: my-jenkins-deployment
+spec:
+ replicas: 10
+ template:
+  metadata:
+   labels:
+    app: sample-app
+  spec:
+    containers:
+    - name: jenkins-deploy-app
+      image: gcr.io/jenkins-project-249206/jenkins-deploy-app
+      ports:
+      - containerPort: 8080

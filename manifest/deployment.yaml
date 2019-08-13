@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: java-docker
-        image: "gcr.io/jenkins-gcr:java-docker"
+        image: "gcr.io/jenkins-gcr/java-docker:1234"
         ports:
         - containerPort: 3000
         imagePullPolicy: Always

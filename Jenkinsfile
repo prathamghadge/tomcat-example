@@ -87,16 +87,16 @@ agent any
             }
         }
 
-        stage('Deploy to GKE') {
+        stage("Deploy to GKE via Helm") {
             steps{
-                step([
-                $class: 'KubernetesEngineBuilder',
-                projectId: env.PROJECT_ID,
-                clusterName: env.CLUSTER_NAME,
-                location: env.LOCATION,
-                manifestPattern: 'manifests/',
-                credentialsId: env.CREDENTIALS_ID
-                ])
+                withCredentials([file(credentialsId: 'gcp-sa', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]){
+                    sh " gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS "
+                    sh " gcloud container clusters get-credentials kubernetes-cluster-jenkins --quiet --region us-central1-a --project jenkins-project-249206 "
+                    //sh " kubectl get pods --all-namespaces "
+                    sh " helm init --client-only "
+                    sh " helm upgrade --install demo-app charts/tomcat-example "
+                    sh " sleep 5 "
+                }
             }
         }
     }

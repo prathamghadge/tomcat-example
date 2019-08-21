@@ -50,7 +50,7 @@ agent any
                     script {
                         def app = docker.build("gcr.io/jenkins-project-249206/demo-app")
                         docker.withRegistry('https://gcr.io', 'gcr:jenkins-project-249206') {
-                        // app.push("${env.BUILD_NUMBER}")
+                        app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
                 }
@@ -94,7 +94,7 @@ agent any
                     sh " gcloud container clusters get-credentials kubernetes-cluster-jenkins --quiet --region us-central1-a --project jenkins-project-249206 "
                     //sh " kubectl get pods --all-namespaces "
                     sh " helm init --client-only "
-                    sh " helm upgrade --install --force demo-app charts/tomcat-example "
+                    sh " helm upgrade --install --force demo-app charts/tomcat-example --set=image.tag=${env.BUILD_NUMBER}"
                     sh " sleep 5 "
                 }
             }

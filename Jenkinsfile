@@ -22,7 +22,7 @@ agent any
 
         stage('Run Tests') {
             steps{
-                sh 'sleep 1'
+                sh 'sleep 15'
             }
         }
 
@@ -59,37 +59,25 @@ agent any
 
         stage('Deploy to Dev') {
             steps{
-                sh 'sleep 1'
+                sh 'sleep 15'
             }
         }
 
         stage('Run Tests @ Dev') {
             steps{
-                sh 'sleep 1'
-            }
-        }
-
-        stage('Clean Up @ Dev') {
-            steps{
-                sh 'sleep 1'
+                sh 'sleep 15'
             }
         }
 
         stage('Deploy to Staging') {
             steps{
-                sh 'sleep 1'
+                sh 'sleep 15'
             }
         }
 
         stage('Run Tests @ Staging') {
             steps{
-                sh 'sleep 1'
-            }
-        }
-
-        stage('Clean Up @ Staging') {
-            steps{
-                sh 'sleep 1'
+                sh 'sleep 15'
             }
         }
 

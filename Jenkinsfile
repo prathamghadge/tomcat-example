@@ -102,8 +102,10 @@ agent any
 
         stage('Access App') {
             steps{
-                sh 'echo "You can access the app at the URL below :"'
-                sh "echo http://$(kubectl get svc --namespace default demo-app-tomcat-example -o jsonpath='{.status.loadBalancer.ingress[0].ip}')/docker-java-sample-webapp-1.0-SNAPSHOT?name=World"
+                sh '''
+                echo "You can access the app at the URL below :"
+                echo http://$(kubectl get svc --namespace default demo-app-tomcat-example -o jsonpath="{.status.loadBalancer.ingress[0].ip}")/docker-java-sample-webapp-1.0-SNAPSHOT?name=World
+                '''
             }
         }
     }

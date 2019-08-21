@@ -94,7 +94,7 @@ agent any
                     sh " gcloud container clusters get-credentials kubernetes-cluster-jenkins --quiet --region us-central1-a --project jenkins-project-249206 "
                     //sh " kubectl get pods --all-namespaces "
                     sh " helm init --client-only "
-                    sh " helm upgrade --install demo-app charts/tomcat-example "
+                    sh " helm upgrade --install --force demo-app charts/tomcat-example "
                     sh " sleep 5 "
                 }
             }

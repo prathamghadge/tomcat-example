@@ -1,2 +1,2 @@
 FROM bitnami/tomcat:latest
-COPY example.war /opt/bitnami/tomcat/webapps
+COPY target/docker-java-sample-webapp-1.0-SNAPSHOT.war /opt/bitnami/tomcat/webapps
